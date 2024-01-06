@@ -1,6 +1,6 @@
 import os, time
 from pytube import YouTube as yt
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory
+from flask import Flask, render_template, request, redirect, url_for
 
 
 app = Flask(__name__)
