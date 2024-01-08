@@ -37,6 +37,20 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
                 </div>
             </div>
         {% endfor %}
+
+        {% for audio in audios[0:4] %}
+        <div class="content">
+            <img class="thumb" src="{{data['thumbnail']}}" alt="logo">
+            <div class="content_text">
+                <span><b>{{data['title']}}</b></span><br>
+                <span><b>Duration : </b>{{data['duration']}} sec</span><br>
+                <span><b>Quality : </b>{{int(audio.bitrate/1000)}} kbps</span><br>
+                <span><b>Size  : </b>{{int(audio.filesize_mb)}}MB</span><br>
+                <!-- <span><b>Size : </b>{{video}}</span><br> --><a style="text-decoration: none;" href="{{audio.url}}">
+                <button class="dl-btn">Download</button></a>
+            </div>
+        </div>
+    {% endfor %}
     </div>
 </body>
 </html>
