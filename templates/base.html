@@ -1,0 +1,83 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="cid:css-a7d2b418-a253-4baf-871c-787e813ac141@mhtml.blink" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="static/img/logo/yt.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"> -->
+    <title>YT Catcher</title>
+</head>
+<body>
+    <div class="header">
+        <img src="./static/img/logo/yt.png" class="logo">
+        <form action="/" method="post">
+            <input type="text" name="url" id="url" placeholder="Enter URL">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div class="container">
+        <!-- <ul class="side-menu">
+            <li>home</li>
+            <li>about</li>
+            <li>contact</li>
+        </ul> -->
+            <div class="content">
+                <div class="content_img">
+                    <img class="thumb" src="https://img.youtube.com/vi/6jqJ7Ga5CoE/mqdefault.jpg" alt="logo">
+                </div>
+                <div class="content_text">
+                    <span><b>Next Genaration Hacker</b></span><br>
+                    <span><b>Duration : </b>23 min 23 sec</span><br>
+                    <span><b>Quality : </b>720p</span><br>
+                    <span><b>Size : </b>24MB</span><br>
+                    <button class="dl-btn">Download</button>
+                </div>
+            </div>
+
+
+            <div class="content">
+                <div class="content_img">
+                    <img class="thumb" src="https://img.youtube.com/vi/ncLdZJ4Gyl4/mqdefault.jpg" alt="logo">
+                </div>
+                <div class="content_text">
+                    <span><b>O re Piya Cover By Prairna Raina</b></span><br>
+                    <span><b>Duration : </b>1 min 6 sec</span><br>
+                    <span><b>Quality : </b>720p</span><br>
+                    <span><b>Size : </b>4MB</span><br>
+                    <button class="dl-btn">Download</button>
+                </div>
+            </div>
+
+    </div>
+    <style>
+        .header { display: flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 10px; background-color: rgb(255, 255, 255); font-family: sans-serif; border-bottom: 1px solid rgb(235, 156, 156); margin-bottom: 10px; }
+    
+    .header form { display: flex; flex-direction: row; justify-content: space-between; align-items: center; }
+    
+    .header form input { height: 30px; width: 80%; border-radius: 5px; border: 0.5px solid rgb(199, 97, 97); padding: 5px; font-size: 15px; }
+    
+    .header form button { height: 40px; width: 15vw; border-radius: 5px; border: none; font-size: 16px; background-color: rgb(255, 16, 16); color: rgb(255, 255, 255); padding: 5px; align-items: center; justify-content: center; margin-left: 5px; }
+    
+    .header form button:hover { background-color: rgb(221, 0, 0); cursor: pointer; }
+    
+    .logo { height: 40px; width: 50px; padding-left: 5px; }
+    
+    .container { width: 100vw; height: 100vh; display: flex; flex-direction: column; }
+    
+    .content { display: flex; flex-direction: row; border-radius: 10px; background-color: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px; padding: 10px; font-family: sans-serif; margin-bottom: 30px; }
+    
+    .content_text .dl-btn { margin: 10px; background: green; border: none; height: 50px; width: 80%; border-radius: 5px; color: rgb(255, 255, 255); font-size: 20px; }
+    
+    @media screen and (min-width: 768px) {
+      .content_img { margin-right: 10px; }
+      .content_img img { border-radius: 5px; }
+    }
+    
+    @media screen and (max-width: 768px) {
+      .container { width: 100vw; height: 100vh; display: flex; align-items: center; flex-direction: column; }
+      .content { display: flex; flex-direction: column; border-radius: 10px; }
+      .content_img { margin-bottom: 10px; }
+      .content_img img { border-radius: 5px; }
+      .content_text .dl-btn { margin: 10px; background: green; border: none; height: 50px; width: 80%; border-radius: 5px; color: rgb(255, 255, 255); font-size: 20px; }
+    }
+    </style>
+</body></html>

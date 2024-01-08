@@ -1,23 +1,164 @@
- 
-<html>
-    <head>
-        <title>YT Catcher</title>
-        <meta name="viewport" content="initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
-    </head>
-    <body>
-		<p class="text-center text-white bg-gray-800">Sidha content no bakwas</p>
-        <div class="flex justify-center items-center h-screen bg-gray-800">
-            <div class="flex flex-col justify-center items-center">
-                <h1 class="text-4xl font-bold mb-4 text-white">YT Catcher</h1>
-                <form action="ytdl" method="post">
-                    <input autocomplete="" type="text" name="url" class="border-2 border-gray-300 rounded-lg p-2 mb-4 center" placeholder="Enter YT Video URL">
-                    <br>
-                    <input type="submit" name="typ" value="video" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded center">
-                    <input type="submit" name="typ" value="audio" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded center mx-9">
-                </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./static/img/logo/yt.png" type="image/x-icon">
+    <link rel="stylesheet" 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"> -->
+    <title>YT Catcher</title>
+</head>
+<body>
+    <div class="header">
+        <img src="./static/img/logo/yt.png" class="logo">
+        <form action="/" method="post">
+            <input type="text" name="url" id="url" placeholder="Enter URL">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div class="container">
+        <!-- <ul class="side-menu">
+            <li>home</li>
+            <li>about</li>
+            <li>contact</li>
+        </ul> -->
+        {% for video in videos[0:4] %}
+            <div class="content">
+                <img class="thumb" src="{{data['thumbnail']}}" alt="logo">
+                <div class="content_text">
+                    <span><b>{{data['title']}}</b></span><br>
+                    <span><b>Duration : </b>{{data['duration']}} sec</span><br>
+                    <span><b>Quality : </b>{{video.resolution}}</span><br>
+                    <span><b>Size  : </b>{{int(video.filesize_mb)}}MB</span><br>
+                    <!-- <span><b>Size : </b>{{video}}</span><br> --><a style="text-decoration: none;" href="{{video.url}}">
+                    <button class="dl-btn">Download</button></a>
+                </div>
             </div>
-        </div>    
-    </body>
-</html>
+        {% endfor %}
+    </div>
 
+
+<style>
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    font-family: sans-serif;
+    border-bottom: 1px solid rgb(235, 156, 156);
+    margin-bottom: 10px;
+}
+.header form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.header form input{
+    height: 30px;
+    width: 80%;
+    border-radius: 5px;
+    border: 0.5px solid rgb(199, 97, 97);
+    padding: 5px;
+    font-size: 15px;
+}
+.header form button{
+    height: 40px;
+    width: 15vw;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    background-color: rgb(255, 16, 16);
+    color: #fff;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+}
+.header form button:hover{
+    background-color: rgb(221, 0, 0);
+    cursor: pointer;
+}
+.logo{
+    height: 40px;
+    width: 50px;
+    padding-left: 5px;
+}
+    .container{
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.1s ease-in-out;
+    }
+    .content{
+        width: 80vw;
+        display: flex;
+        flex-direction: row;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        padding: 10px;
+        font-family: sans-serif;
+        margin-bottom: 30px;
+        margin-left: 0.5vw;
+    }
+
+    .content_text .dl-btn{
+            margin: 10px;
+            background: green;
+            border: none;
+            height: 50px;
+            width: 80%;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 20px;
+        }
+
+    @media screen and (min-width: 768px) {
+        .content .thumb{
+            border-radius:5px;
+            max-width: 20%;
+        }
+        
+    }
+    @media screen and (max-width: 768px) {
+        .container{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            transition: all 0.1s ease-in-out;
+        }
+        .content{
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            
+        }
+        .content_img{
+            margin-bottom: 10px;
+        }
+        .content_img img{
+            border-radius:5px;
+        }
+        .content_text .dl-btn{
+            margin: 10px;
+            background: green;
+            border: none;
+            height: 50px;
+            width: 80%;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+    }
+</style>
+</body>
+</html>
