@@ -8,7 +8,7 @@ app.static_folder = "static"
 
 #https://youtu.be/SWih3fGnQ7I?si=GtMlIOCy3nVrHH9W
 @app.route("/")
-def index():
+def home():
     return render_template("index.html")
 
 @app.route("/ytdl", methods=["POST"])
