@@ -11,7 +11,7 @@ app.static_folder = "static"
 
 #https://youtu.be/SWih3fGnQ7I?si=GtMlIOCy3nVrHH9W
 @app.route("/", methods=["post", "get"])
-def index():
+def home():
     if request.method == "GET": return render_template("base.html")
     if request.method == "POST":
         form = request.form
