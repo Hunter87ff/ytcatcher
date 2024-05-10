@@ -33,7 +33,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
                     <span><b>Duration : </b>{{data['duration']}} sec</span><br>
                     <span><b>Type : </b>Video</span><br>
                     <span><b>Quality : </b>{{video.resolution}}</span><br>
-                    <span><b>Size  : </b>{{int(video.filesize_mb)}}MB</span><br>
+                    <span><b>Size  : </b>{{int(video.filesize_mb)}} MB</span><br>
                     <!-- <span><b>Size : </b>{{video}}</span><br> --><a style="text-decoration: none;" href="{{video.url}}">
                     <button class="dl-btn">Download</button></a>
                 </div>
@@ -48,8 +48,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
                 <span><b>Duration : </b>{{data['duration']}} sec</span><br>
                 <span><b>Type : </b>Audio</span><br>
                 <span><b>Quality : </b>{{int(audio.bitrate/1000)}} kbps</span><br>
-                <span><b>Size  : </b>{{int(audio.filesize_mb)}}MB</span><br>
-                <!-- <span><b>Size : </b>{{video}}</span><br> --><a style="text-decoration: none;" href="{{audio.url}}">
+                <span><b>Size  : </b>{{int(audio.filesize_mb)}} MB</span><br>
+                <a style="text-decoration: none;" href="{{audio.url}}">
                 <button class="dl-btn">Download</button></a>
             </div>
         </div>

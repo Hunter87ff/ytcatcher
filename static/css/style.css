@@ -26,18 +26,18 @@
 .header form button{
     height: 40px;
     width: 15vw;
-    border-radius: 5px;
     border: none;
     font-size: 16px;
-    background-color: #ff1010;
-    color: #fff;
+    color: #ffffff;
+    background: #ff0000;
+    border-radius: 5px;
     padding: 5px;
     align-items: center;
     justify-content: center;
     margin-left: 5px;
 }
 .header form button:hover{
-    background-color: #b30101;
+    background: #c00707;
     cursor: pointer;
 }
 .logo{
@@ -72,14 +72,16 @@
 
     .content_text .dl-btn{
             margin: 10px;
-            background: green;
             border: none;
             height: 50px;
             width: 80%;
             border-radius: 5px;
-            color: #fff;
+            background: green;
+            color: #fffefe;
             font-size: 20px;
+            cursor: pointer;
         }
+
 
     @media screen and (min-width: 768px) {
         .content .thumb{
