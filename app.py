@@ -29,6 +29,7 @@ def home():
         "audio": [x for x in vdo.streams if x.type=="audio"],
         "video":[x for x in vdo.streams if x.type=="video"]}
         return render_template("index.html", data=data, videos=data["video"], audios=data["audio"], int=int)
+    return render_template("base.html")
 
 
 
