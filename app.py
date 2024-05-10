@@ -3,13 +3,14 @@ from pytube import YouTube as yt
 from flask import Flask, render_template, jsonify, request, redirect, url_for, send_from_directory
 
 
-
-
-
 app = Flask(__name__)
 app.static_folder = "static"
 
-#https://youtu.be/SWih3fGnQ7I?si=GtMlIOCy3nVrHH9W
+@app.errorhandler(500)
+def error_500(e):return render_template("error/e500.html")
+@app.errorhandler(404)
+def error_404(e):return redirect("/")
+
 @app.route("/", methods=["post", "get"])
 def home():
     if request.method == "GET": return render_template("base.html")
@@ -45,8 +46,6 @@ def extract():
     "audio": [x for x in vdo.streams if x.type=="audio"],
     "video":[x for x in vdo.streams if x.type=="video"]}
     return jsonify(data)
-
-
 
 @app.route("/ytdl", methods=["POST", "GET"])
 def download():

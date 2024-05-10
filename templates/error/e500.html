@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 Error - Something Went Wrong</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f3f4f6; 
+        }
+
+        .error {
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: -10px -10px 20px #d1d9e6, 10px 10px 20px #b0bdcd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="min-h-screen flex flex-col justify-center items-center">
+        <div class="max-w-lg w-full p-8 error">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">500 Error</h1>
+            <p class="text-lg text-gray-600 mb-8">Oops! Something went wrong. <br>If you've entered wrong url, please correct it</p>
+            <a href="/" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">Go to Home</a>
+        </div>
+    </div>
+</body>
+
+</html>
