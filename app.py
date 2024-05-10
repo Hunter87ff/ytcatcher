@@ -1,8 +1,7 @@
 import os, time
 from pytube import YouTube as yt
 from pytube import StreamQuery
-from flask import Flask, render_template, jsonify, request, redirect, url_for, send_from_directory
-
+from flask import Flask, render_template, jsonify, request, redirect
 
 app = Flask(__name__)
 app.static_folder = "static"
