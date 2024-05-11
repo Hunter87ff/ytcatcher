@@ -9,22 +9,18 @@
 </head>
 <body>
     <div class="header">
-        <img src="./static/img/logo/yt.png" class="logo">
+            <img class="logo" src="./static/img/logo/yt.png">
+            <!-- <h3 class="logo">YT Catcher</h3> -->
+
         <form action="/" method="post">
-            <input type="url" name="url" id="url" placeholder="Enter URL">
-            <button type="submit">Search</button>
+            <input required type="url" name="url" id="url" placeholder="Enter URL">
+            <button id="search_btn" onclick="Search()" type="submit">Search</button>
         </form>
     </div>
     <div class="container">
-        <!-- <ul class="side-menu">
-            <li>home</li>
-            <li>about</li>
-            <li>contact</li>
-        </ul> -->
             <div class="content">
-                <div class="content_img">
-                    <img class="thumb" src="https://img.youtube.com/vi/6jqJ7Ga5CoE/mqdefault.jpg" alt="logo">
-                </div>
+                    <img class="content_img" src="https://img.youtube.com/vi/6jqJ7Ga5CoE/mqdefault.jpg" alt="logo">
+
                 <div class="content_text">
                     <span><b>Next Genaration Hacker</b></span><br>
                     <span><b>Duration : </b>23 min 23 sec</span><br>
@@ -37,9 +33,7 @@
 
 
             <div class="content">
-                <div class="content_img">
-                    <img class="thumb" src="https://img.youtube.com/vi/ncLdZJ4Gyl4/mqdefault.jpg" alt="logo">
-                </div>
+                <img class=" content_img" src="https://img.youtube.com/vi/ncLdZJ4Gyl4/mqdefault.jpg" alt="logo">
                 <div class="content_text">
                     <span><b>O re Piya Cover By Prairna Raina</b></span><br>
                     <span><b>Duration : </b>1 min 6 sec</span><br>
@@ -50,4 +44,6 @@
                 </div>
             </div>
     </div>
-</body></html>
+    <script src="./static/js/main.js"></script>
+</body>
+</html>
