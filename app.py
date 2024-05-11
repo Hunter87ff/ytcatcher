@@ -44,7 +44,7 @@ def extract():
     "duration":vdo.length,
     "thumbnail":vdo.thumbnail_url,
     "channel_id":vdo.channel_url,
-    "audio": [x for x in vdo.streams if x.type=="audio"],
+    "audio": sorted([x for x in vdo.streams if x.type=="audio"], key=lambda x: x.resolution, reverse=True),
     "video":[x for x in vdo.streams if x.type=="video"]}
     return jsonify(data)
 
