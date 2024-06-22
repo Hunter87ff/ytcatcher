@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.static_folder = "static"
 
 @app.errorhandler(500)
-def error_500(e):return render_template("error/e500.html")
+def error_500(e):return render_template("error/e500.html"), 500
 @app.errorhandler(404)
 def error_404(e):return redirect("/")
 
@@ -23,10 +23,11 @@ def home():
         "author":vdo.author,
         "views" : vdo.views,
         "duration":vdo.length,
-        "thumbnail":vdo.thumbnail_url,
+        "thumbnail": f"https://img.youtube.com/vi/{vdo.video_id}/maxresdefault.jpg",  #vdo.thumbnail_url,
         "channel_id":vdo.channel_url,   
-        "audio": [x for x in vdo.streams if x.type=="audio"],
-        "video":[x for x in vdo.streams if x.type=="video"]}
+        "audio": sorted(vdo.streams.filter(only_audio=True), key=lambda x:x.abr, reverse=True),
+        "video": vdo.streams.filter(only_video=True)
+        }
         return render_template("index.html", data=data, videos=data["video"], audios=data["audio"], int=int)
     return render_template("base.html")
 
@@ -44,9 +45,10 @@ def extract():
     "duration":vdo.length,
     "thumbnail":vdo.thumbnail_url,
     "channel_id":vdo.channel_url,
-    "audio": sorted([x for x in vdo.streams if x.type=="audio"], key=lambda x: x.resolution, reverse=True),
-    "video":[x for x in vdo.streams if x.type=="video"]}
-    return jsonify(data)
+    "audio": vdo.streams.filter(only_audio=True),
+    "video": vdo.streams.filter(only_video=True)
+    }
+    return f"{data}"
 
 @app.route("/ytdl", methods=["POST", "GET"])
 def download():
