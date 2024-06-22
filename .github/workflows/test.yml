@@ -31,7 +31,7 @@ jobs:
 
     - name: Deployment
       run: |
-        python src/runner.py 
+        python app.py 
 
 
     - name: Public IP
