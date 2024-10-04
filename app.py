@@ -1,4 +1,4 @@
-import os, time
+import os, time, requests
 from pytube import YouTube as yt
 from pytube import StreamQuery
 from flask import Flask, render_template, jsonify, request, redirect
@@ -8,8 +8,9 @@ app.static_folder = "static"
 
 @app.errorhandler(500)
 def error_500(e):return render_template("error/e500.html"), 500
-@app.errorhandler(404)
-def error_404(e):return redirect("/")
+
+# @app.errorhandler(404)
+# def error_404(e):return redirect("/")
 
 @app.route("/", methods=["post", "get"])
 def home():
@@ -51,11 +52,22 @@ def extract():
     return f"{data}"
 
 @app.route("/ytdl", methods=["POST", "GET"])
-def download():
+def ytdl():
     form = request.form
     url = form["url"]
     obj = yt(url).streaming_data["formats"]
     if form["typ"] == "video": return redirect(obj[-1]["url"])
     else: return redirect(obj[0]["url"])
+
+@app.route("/route/<path:location>")
+def route(location:str):
+    headers = {'Referer': "http://localhost:5000/"}
+    obj = requests.get(request.url.split("/route/")[1], headers).json()
+    return jsonify(obj)
+
+
+@app.route("/download")
+def download():
+    return render_template("page2.html", req=request)
 
 app.run(host="0.0.0.0", port=8080)

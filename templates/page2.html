@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YT CATCHER</title>
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
+    <!-- <script src="https://sprucebot.tech/static/js/jquery.js"></script> -->
+    <style>
+    body{
+        /* background:linear-gradient(to right,#2101b9,#005eec,#0090f8,#00bcee,#00e3e3); */
+        align-items:center;
+        text-align:center;
+        justify-content:center;
+        width:100vw;height:100vh;
+        place-items:center;
+        display:flex
+    }
+    .container{justify-content:center;align-items:center;height:100vh;max-width:80vw;width:400px;max-height:70vh;border-radius:1rem;display:flex;flex-direction:column;position:relative}.heading{width:100%;position:absolute;top:0;border-top-left-radius:1rem;border-top-right-radius:1rem;height:50px;-webkit-text-fill-color:#fefeff}#form{width:80%}.form-group{position:relative;text-align:left;align-items:left;width:100%;margin-bottom:10%}label,button,select,input{width:100%}label{font-weight: bold;}#btn:hover{background: #00bcee;} input:focus {outline: none;}</style>
+</head>
+<body class="bg-gray-600">
+    <div class="container bg-gray-700">
+        <h1 class="heading text-3xl font-bold bg-blue-600">YT CATCHER</h1>
+        <form action="#" id="form" class="mb-12">
+            <div class="form-group">
+                <label class="text-white" for="link">Enter Video Link</label><br>
+                <input type="url" name="link" id="link" class="border border-gray-300 rounded-md p-2 w-full bg-gray-700 text-white" required><br>
+                <label class="text-white" for="format">Select File Format</label><br>
+                <select name="format" id="format" class="border border-gray-300 rounded-md p-2 w-full bg-gray-700 text-white" required>
+                    <option value="mp3">MP3</option>
+                    <option value="360">360p MP4</option>
+                    <option value="480">480p MP4</option>
+                    <option value="720">720p MP4</option>
+                    <option value="1080">1080p MP4</option>
+                    <option value="4k">4K MP4</option>
+                    <option value="8k">8k MP4</option>
+                </select><br>
+            </div>
+            <button type="submit" id="btn" class="bg-blue-500 text-white p-2 rounded-md mt-2">Download</button>
+        </form>
+        <div class="errors h-40 w-11/12 relative bottom-0 rounded bg-gray-800 text-white hidden"></div>
+    </div>
+
+    <script>
+        class QueryObject{
+            constructor(element){this.element = document.querySelector(element);}
+            html(text){this.element.innerHTML = text; return this.element;}
+            css(property, value){this.element.style[property] = value;return this.element;}
+            val(){return this.element.value;}
+            on(event, callback){this.element.addEventListener(event, callback);}
+            submit(callback){this.element.addEventListener("submit", callback);}
+        }
+        function $(element){return new QueryObject(element);}
+        function sleep(seconds) {return new Promise(resolve => setTimeout(resolve, seconds * 1000));}
+        function sel(class_name){return document.querySelector(class_name);}
+        function encodeUrl(url) {return url.replace(/\//g, '%2F').replace(/:/g, '%3A').replace(/\?/g, '%3F').replace(/=/g, '%3D');}
+        $("#format").on("change", function(){$("#btn").html("Download")} );
+        async function Download(){
+                const videoUrl = sel("#link").value;
+                const formattedUrl = encodeUrl(videoUrl);
+                const format = sel("#format").value ;
+                const BASE_URL = "https://ab.cococococ.com/";
+                const PROXY_URL = `${window.location.origin}/route/` //"https://proxy.cors.sh/" || 'https://cors-anywhere.herokuapp.com/';
+                const QUERY_URL = PROXY_URL + `${BASE_URL}ajax/download.php?button=1&start=1&end=1&format=${format}&url=${videoUrl}`;
+                const headers = {'Referer': BASE_URL || "http://localhost:5000/"};
+                try {
+                    const processResponse = await fetch(QUERY_URL, { headers });
+                    const process = await processResponse.json();
+                    // console.log(process.title.replace("/\\/","/"))
+                    if (process.title.replace("/\\/","/") == videoUrl){
+                        console.log("Failed to download video");
+                        $("#btn").html("Failed to download")
+                        $("#btn").css("background-color", "red")
+                        return;
+                    }
+                    const PROCESS_URL = `${BASE_URL}ajax/progress.php?id=${process.id}`;
+                    let downloadUrl = null;
+                    // console.log("Query Url : ", QUERY_URL);
+                    // console.log("Process Url : ", PROCESS_URL);
+                    // console.log("Loading...");
+                    $("#btn").html("Loading...")
+                    /*Sometime it doesn't work, You need to reload then!!*/
+                    while (downloadUrl === null) {
+                        const progressResponse = await fetch(PROCESS_URL, { headers  });
+                        const progressData = await progressResponse.json();
+                        downloadUrl = progressData.download_url;
+                        if(progressData.text=="Initialising"){$("#btn").html("Initialising...")};
+                        if(progressData.text=="Converting"){$("#btn").html("Converting...")};
+                        if (!downloadUrl) {await new Promise(resolve => setTimeout(resolve, 3000));}
+                    }
+                    document.location.href = downloadUrl.replace(/\\/g, "/");
+                    $("#btn").html("Download");
+                    $(".errors").element.classList.add(("hidden"));
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                } catch (error) {
+                    console.error("An error occurred:", error);
+                    $("#btn").html("Download Failed");
+                    $(".errors").html(error).classList.remove(("hidden"));
+                }
+        }
+        $("#form").submit(function(e) {e.preventDefault();Download();});
+    </script>
+</body>
+</html>
