@@ -14,7 +14,8 @@ def error_500(e):return render_template("error/e500.html"), 500
 
 @app.route("/", methods=["post", "get"])
 def home():
-    if request.method == "GET": return render_template("base.html")
+    return render_template("page2.html", req=request)
+    if request.method == "GET": render_template("page2.html", req=request) # return render_template("base.html")
     if request.method == "POST":
         form = request.form
         url = form["url"]
