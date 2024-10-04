@@ -1,6 +1,9 @@
 # Yt catcher
 Ytcatcher is a basic pytube based youtube video extracking tool to extract audio/video of different quality, it has a userfriendly web application for better interaction with the user
 
+> [!NOTICE]
+> Pytube isn't working at this time. so you can try the second router `/download` it's the second route to download, with minimal media output, supports audio, video(quality options available).
+
 ## Pros
 - No Ads: Ads are annoying, so there are no ads for better user experience
 - No multiple page redirection : It doesn't redirect to any third party web page
