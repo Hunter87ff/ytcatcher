@@ -1,25 +1,17 @@
 {
-  "short_name": "YT Catcher",
-  "name": "Youtube Video Downloader",
-  "icons": [
-    {
-      "src": "static/img/logo/yt.jpg",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "static/img/logo/yt.jpg",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "static/img/logo/yt.jpg",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+    "theme_color": "#000",
+    "background_color": "#000",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "name": "YT CATCHER",
+    "short_name": "YT CATCHER",
+    "description": "Download youtube videos for free ",
+    "icons": [
+        {
+            "src": "static/img/logo/yt.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ]
 }
